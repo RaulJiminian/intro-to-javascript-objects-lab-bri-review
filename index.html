@@ -12,3 +12,64 @@
     
 </body>
 </html>
+
+// //Exercise 3
+game.difficulty = "hard"
+console.log(game);
+
+// //Exercise 4
+game.party.push(pokemon[7]);
+console.log(game)
+
+// //Exercise 5
+game.party.push(pokemon[10], pokemon[44], pokemon[80]);
+console.log(game)
+
+////Exercise 6
+game.gyms.forEach((e)=>{
+  if(e.difficulty < 3){
+   return e.completed = true
+  }
+})
+console.log('Exercise 6:',game)
+
+////Solve Exercise 7 here:
+
+game.party.splice(0, 1, pokemon[7]);
+console.log(game.party)
+
+
+// Exercise 8
+// 1. Print the name of each Pokémon in your party.
+// 2. Consider using a loop or an array method to access each Pokémon's name.
+
+game.party.forEach((name)=>{
+ console.log(name);
+})
+
+// // Exercise 9
+
+pokemon.forEach((star)=>{
+  if(star.starter === true)
+    console.log(pokemon.name)
+})
+
+//// Exercise 10
+
+game.catchPokemon = {}
+
+game.party.pokemonObj = {}
+
+game.party.pokemonObj = pokemon[101]
+
+//// 12
+game.gyms.forEach((e)=>{
+    if(e.difficulty < 6){
+     return e.completed = true
+    }
+  })
+
+  ////Solve Exercise 14 here:
+
+let pC = game.party.length
+game.partyCount = pC

@@ -1,5 +1,4 @@
-const pokemon = require('./data')
-
+const pokemon = require("./data");
 
 const game = {
   party: [],
@@ -19,125 +18,103 @@ const game = {
     { name: "rare candy", quantity: 99 },
   ],
 };
+
 // //Exercise 3
-game.difficulty = "hard"
-console.log(game);
+game.difficulty = "hard";
+console.log("Exercise 3:", game);
 
 // //Exercise 4
 game.party.push(pokemon[7]);
-console.log(game)
+console.log("Exercise 4:", game.party);
 
 // //Exercise 5
 game.party.push(pokemon[10], pokemon[44], pokemon[80]);
-console.log(game)
+console.log("Exercise 5:", game.party);
 
 ////Exercise 6
-game.gyms.forEach((e)=>{
-  if(e.difficulty < 3){
-   return e.completed = true
+game.gyms.forEach((e) => {
+  if (e.difficulty < 3) {
+    return (e.completed = true);
   }
-})
-console.log('Exercise 6:',game)
+});
+console.log("Exercise 6:", game.gyms);
 
 ////Solve Exercise 7 here:
 
 game.party.splice(0, 1, pokemon[7]);
-console.log(game.party)
+console.log("Exercise 7:", game.party);
 
+//// Exercise 8
 
-// Exercise 8
-// 1. Print the name of each Pokémon in your party.
-// 2. Consider using a loop or an array method to access each Pokémon's name.
-
-game.party.forEach((name)=>{
- console.log(name);
-})
+for (let i = 0; i < game.party.length; i++) {
+  console.log("Exercise 8:", game.party[i].name);
+}
 
 // // Exercise 9
 
-pokemon.forEach((star)=>{
-  if(star.starter === true)
-    console.log(pokemon.name)
-})
+for (let i = 0; i < pokemon.length; i++) {
+  if (pokemon[i].starter) {
+    console.log("Excercise 9:", pokemon[i]);
+  }
+}
 
 //// Exercise 10
 
-game.catchPokemon = {}
+game.catchPokemon = (pokemonObj) => {
+  game.party.push(pokemonObj);
+};
 
-game.party.pokemonObj = {}
+game.catchPokemon(pokemon[101]);
 
-game.party.pokemonObj = pokemon[101]
-
-//console.log(game.party)
-
-/*
-Exercise 11
-1. Copy the `catchPokemon` method that you just wrote above, and paste it below. Modify it so that it also decreases the number of pokeballs in your inventory each time you catch a Pokémon.
-2. How will you find and update the quantity of pokeballs in the `game.items` array?
+console.log("Exercise 10;", game.party);
 
 
+let zed = game.items[1]
 
-Tips:
-For this exercise, it's okay to have a negative number of pokeballs.
-After updating the method, call it and pass in a Pokemon object of your choice from the `pokemon` data to catch it.
-Also, log the `game.items` array to confirm that the pokeball quantity is being decremented.
+for (let i = 0; i < game.party.length; i++) {
+  if (game.catchPokemon === true) {
+    return (zed[1] -1);
+  }
+}
 
-Solve Exercise 11 here:
-*/
+console.log("Exercise 11:", game.items)
 
 
 ////Solve Exercise 12 here:
 
-game.gyms.forEach((e)=>{
-  if(e.difficulty < 6){
-   return e.completed = true
+game.gyms.forEach((e) => {
+  if (e.difficulty < 6) {
+    return (e.completed = true);
   }
-})
-//console.log(game)
+});
+//console.log("Exercise 12:", game.gyms);
+
+//// Exercise 13
+
+game.gymTally = { complete: 0, incomplete: 0 };
 
 
-/*
-Exercise 13
-1. Create a `gymStatus` method in `game` to tally completed and incomplete gyms.
-2. How will you iterate through the `gyms` array and update the tally? Remember to log the final tally.
+game.gyms.forEach((f) => {
+  if (f.completed === true) {
+    return (game.gymTally.complete +=1);
+  } else if (game.gymTally.incomplete +=1);
+});
 
-This method should:
-  - Not accept any arguments.
-  - Initially create a constant `gymTally`, which is an object that has two 
-    properties: `completed` and `incomplete`, both of which are initially set to 0.
-  - Iterate through the objects in the `game.gyms` array and update the 
-    properties on `gymTally` as follows: 
-    - `completed` should count how many gyms in the array have a value of `true` 
-      for their `completed` property. 
-    - `incomplete` should count how many gyms in the array have a value of 
-      `false` for their `completed` property.
-  - Log the value of `gymTally`.
-  - The method should not return anything.
-
-For example, if five gym objects have a value of `true` on their `completed` property and three gym objects have a value of `false` on their `completed` property, the logged value would be: `{ completed: 5, incomplete: 3 }`.
-
-Solve Exercise 13 here:
-*/
-
-
+//console.log("Exercise 13:", game.gymTally);
 
 ////Solve Exercise 14 here:
 
-let pC = game.party.length
-game.partyCount = pC
+game.partyCount = game.party.length;
 
-//console.log(game)
+//console.log("Excercise 14:", game.partyCount);
 
-/*
-Exercise 15
-1. Now, complete gyms with a difficulty below 8. Reflect on how this is similar to or different from the previous gym exercises.
-(change the value of `complete` in the qualifying objects from false to true).
+//// Exercise 15
 
-Solve Exercise 15 here:
-*/
+game.gyms.forEach((e) => {
+  if (e.difficulty < 8) {
+    return (e.completed = true);
+  }
+});
+//console.log("Exercise 15:" ,game.gyms);
 
-
-
-
-
-//DONT DO "REQUIRES"
+//console.log("Excercise 16:" ,(game))
