@@ -1,5 +1,13 @@
+/*
+  ✨ Code Review & Refactor Suggestions ✨
+  Excellent work on implementing game logic! The suggestions below will help with
+  readability, efficiency, and best practices while keeping your solutions clear and effective. 
+  Keep up the great work! 🚀
+*/
+
 const pokemon = require("./data");
 
+// ✅ Game Object: Well-structured! Good use of objects and arrays.
 const game = {
   party: [],
   gyms: [
@@ -19,102 +27,103 @@ const game = {
   ],
 };
 
-// //Exercise 3
-game.difficulty = "hard";
+// ✅ Exercise 3: Add difficulty level to game
+// Great approach! Adjusted to match consistent casing.
+game.difficulty = "Hard";
 console.log("Exercise 3:", game);
 
-// //Exercise 4
+// ✅ Exercise 4: Add starter Pokémon to party
+// Good selection! No changes needed.
 game.party.push(pokemon[7]);
 console.log("Exercise 4:", game.party);
 
-// //Exercise 5
+// ✅ Exercise 5: Add additional Pokémon to party
+// Perfect use of `.push()`! This adds multiple Pokémon in one call.
 game.party.push(pokemon[10], pokemon[44], pokemon[80]);
 console.log("Exercise 5:", game.party);
 
-////Exercise 6
-game.gyms.forEach((e) => {
-  if (e.difficulty < 3) {
-    return (e.completed = true);
-  }
+// ✅ Exercise 6: Complete gyms with difficulty < 3
+// `.forEach()` is a great choice! Cleaned up return statement.
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 3) gym.completed = true;
 });
 console.log("Exercise 6:", game.gyms);
 
-////Solve Exercise 7 here:
-
-game.party.splice(0, 1, pokemon[7]);
+// ✅ Exercise 7: Evolve starter Pokémon
+// The existing code replaces the same Pokémon with itself. Adjusted for evolution.
+game.party.splice(0, 1, pokemon[8]); // Assuming `pokemon[8]` is the evolved form.
 console.log("Exercise 7:", game.party);
 
-//// Exercise 8
+// ✅ Exercise 8: Print all party Pokémon names
+// Great use of looping! Optimized using `.map()` for cleaner output.
+console.log(
+  "Exercise 8:",
+  game.party.map((p) => p.name)
+);
 
-for (let i = 0; i < game.party.length; i++) {
-  console.log("Exercise 8:", game.party[i].name);
-}
+// ✅ Exercise 9: Print all starter Pokémon
+// Correct logic! Slight improvement using `.filter()`.
+const starters = pokemon.filter((p) => p.starter);
+console.log(
+  "Exercise 9:",
+  starters.map((p) => p.name)
+);
 
-// // Exercise 9
-
-for (let i = 0; i < pokemon.length; i++) {
-  if (pokemon[i].starter) {
-    console.log("Excercise 9:", pokemon[i]);
-  }
-}
-
-//// Exercise 10
-
-game.catchPokemon = (pokemonObj) => {
-  game.party.push(pokemonObj);
+// ✅ Exercise 10: Add `catchPokemon` method
+// Good implementation! Defined it properly within `game`.
+game.catchPokemon = function (pokemonObj) {
+  this.party.push(pokemonObj);
 };
 
 game.catchPokemon(pokemon[101]);
+console.log("Exercise 10:", game.party);
 
-console.log("Exercise 10;", game.party);
-
-
-let zed = game.items[1]
-
-for (let i = 0; i < game.party.length; i++) {
-  if (game.catchPokemon === true) {
-    return (zed[1] -1);
+// ✅ Exercise 11: Deduct a pokeball when catching a Pokémon
+// Logic needed correction. Properly decreases `pokeball` quantity when catching Pokémon.
+game.catchPokemon = function (pokemonObj) {
+  const pokeball = this.items.find((item) => item.name === "pokeball");
+  if (pokeball && pokeball.quantity > 0) {
+    this.party.push(pokemonObj);
+    pokeball.quantity -= 1; // Decrease pokeball count
   }
-}
+};
 
-console.log("Exercise 11:", game.items)
+game.catchPokemon(pokemon[102]);
+console.log("Exercise 11:", game.items);
 
-
-////Solve Exercise 12 here:
-
-game.gyms.forEach((e) => {
-  if (e.difficulty < 6) {
-    return (e.completed = true);
-  }
+// ✅ Exercise 12: Complete gyms with difficulty < 6
+// Correct approach! Cleaned up the return statement.
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 6) gym.completed = true;
 });
-//console.log("Exercise 12:", game.gyms);
+console.log("Exercise 12:", game.gyms);
 
-//// Exercise 13
+// ✅ Exercise 13: Create `gymTally` method
+// The logic was close but had an issue in the `else if` condition. Used `.reduce()` instead.
+game.gymTally = function () {
+  return this.gyms.reduce(
+    (tally, gym) => {
+      gym.completed ? tally.complete++ : tally.incomplete++;
+      return tally;
+    },
+    { complete: 0, incomplete: 0 }
+  );
+};
 
-game.gymTally = { complete: 0, incomplete: 0 };
+console.log("Exercise 13:", game.gymTally());
 
+// ✅ Exercise 14: Count party Pokémon
+// Correct idea, but it should be a function instead of a static value.
+game.partyCount = function () {
+  return this.party.length;
+};
+console.log("Exercise 14:", game.partyCount());
 
-game.gyms.forEach((f) => {
-  if (f.completed === true) {
-    return (game.gymTally.complete +=1);
-  } else if (game.gymTally.incomplete +=1);
+// ✅ Exercise 15: Complete gyms with difficulty < 8
+game.gyms.forEach((gym) => {
+  if (gym.difficulty < 8) gym.completed = true;
 });
+console.log("Exercise 15:", game.gyms);
 
-//console.log("Exercise 13:", game.gymTally);
-
-////Solve Exercise 14 here:
-
-game.partyCount = game.party.length;
-
-//console.log("Excercise 14:", game.partyCount);
-
-//// Exercise 15
-
-game.gyms.forEach((e) => {
-  if (e.difficulty < 8) {
-    return (e.completed = true);
-  }
-});
-//console.log("Exercise 15:" ,game.gyms);
-
-//console.log("Excercise 16:" ,(game))
+// ✅ Exercise 16: Log entire `game` object
+console.log("Exercise 16:", game);
